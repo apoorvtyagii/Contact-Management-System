@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+<style>
+    hr {
+        background-color: #ccc;
+        border: solid;
+    }
+</style>
+<div class="container text-center well">
+    {% if not allcontacts %}
+        <h3 style= text-align:center>No Contacts available!</h3>
+    {% else %}
+    
+        <form method="post" action="">
+        {% csrf_token %}
+            <div class="row">
+                <div class="col-sm-12">
+                    <input type="txt"  name="ContactName" placeholder="Search contacts"/>
+                    <input type="submit" value="Submit" />
+                </div>
+            </div>
+        </form>
+        <br>
+        <ul><a class="btn login_btn" href="{% url 'addcontact' %}">Add+</a></ul>
+    {% endif %}
+</div>
+
+<div class="container text-center">
+    {% for i in allcontacts %}
+    <div class="row">
+        <div class="col-sm-6 well">
+            <div class="well">
+                <p>
+                    <table class="table table-striped">
+                        <tr>
+                            <td>{{i.name}}</td>
+                            <td>{{i.phone}}</td>
+                            <td>{{i.email}}</td>
+                            <td>{{i.office}}</td>
+                        </tr>
+                        <tr>
+                            <ul><a class="btn login_btn" href="{% url 'deletecontact' i.id %}">Delete</a></ul>
+                            <ul><a class="btn login_btn" href="{% url 'editcontact' i.id %}">Edit</a></ul>
+                        </tr>
+                    </tbody>
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+            
+{% endblock %}
+

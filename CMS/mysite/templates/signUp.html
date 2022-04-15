@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <style>
+  .center{
+  text-align: center;
+  }
+  .specified{
+  padding: 0 30% 0 30% ;
+  }
+  </style>
+<form method="post">
+  {% csrf_token %}
+<div class="container">
+  <div class="jumbotron center">
+	  <h3>New Members Please Sign Up</h3>
+	  <br>
+	  					<div class="specified">
+						<span></span>
+						<input type="text" name="username" class="form-control" required="true" placeholder="Username...">
+					</div>
+	  <br>
+					<div class="specified">
+						<span></span>
+						<input type="email" name="email" class="form-control" required="true" placeholder="Enter Email...">
+					</div>
+	  <br>
+					<div class="specified">
+						<span></span>
+						<input type="password" name="password" class="form-control" placeholder="Password">
+					</div>
+	  <br>
+					<div class="form-group">
+						<input type="submit" value="Sign up" class="btn signup_btn">
+					</div>
+				</div>
+				</div>
+</form>
+{% endblock %}

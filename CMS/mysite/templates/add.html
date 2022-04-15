@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+	.center {
+		text-align: center;
+	}
+
+	.specified {
+		padding: 0px 100px 0 100px;
+		border: 2px 2px 2px 2px;
+	}
+</style>
+{% if contactedit %}
+<form method="POST" action="{% url 'editcontact' contact.id %}">
+	{% csrf_token %}
+        <table class="table-hover">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 well">
+                    <h3>ADD</h3>
+                    <span></span>
+                    <input type="text" name="contact_name" class="form-control" required="true" value={{contact.name}}>
+                    <br>
+                    <span></span>
+                    <input type="number" name="contact_phone" class="form-control" required="true" value={{contact.phone}}>
+                    <br>
+                    <span></span>
+                    <input type="email" name="contact_email" class="form-control" value={{contact.email}}>
+                    <br>
+                    <span></span>
+                    <input type="text" name="contact_office" class="form-control" value={{contact.office }}>
+                    <br>
+                    {% if emessage != None %}
+                    <span> {{ emessage }} </span>
+                    {% endif %}
+                    <br>
+                    <br>
+                    <div class="form-group">
+                        <input type="submit" value="Update" class="btn login_btn">
+                    </div>
+                </div>
+            </div>
+        </table>
+	</form>
+
+{% else %}
+<form method="POST" action="{% url 'addcontact' %}">
+	{% csrf_token %}
+	<table class="table-hover">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3 well">
+				<h3>ADD</h3>
+                <span></span>
+				<input type="text" name="contact_name" class="form-control" required="true" placeholder="Name- (Required)">
+				<br>
+				<span></span>
+				<input type="number" name="contact_phone" class="form-control" required="true" placeholder="Phone number- (Required)">
+                <br>
+				<span></span>
+				<input type="email" name="contact_email" class="form-control" placeholder="Enter Email...">
+				<br>
+                <span></span>
+				<input type="text" name="contact_office" class="form-control" placeholder="Office...">
+				<br>
+				{% if emessage != None %}
+				<span> {{ emessage }} </span>
+				{% endif %}
+				<br>
+				<div class="row align-items-center remember">
+					<input type="checkbox">Remember Me
+				</div>
+				<br>
+				<div class="form-group">
+					<input type="submit" value="addcontact" class="btn login_btn">
+				</div>
+			</div>
+		</div>
+	</table>
+
+</form>
+{% endif %}
+{% endblock %}

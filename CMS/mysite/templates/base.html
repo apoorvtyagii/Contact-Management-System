@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'bootstrap.3.4.1/css/bootstrap.css' %}" />
+  <link rel="text/javascript" href="{% static 'bootstrap.3.4.1/js/bootstrap.js' %}" />
+  <link rel="text/javascript" href="{% static 'base.js' %}" />
+  <link rel="stylesheet" href="{% static 'base.css' %}" />
+
+
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+          data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+        </button>
+        <a class="navbar-brand" href="{% url 'base' %}">CMS</a>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{% url 'mydirectory' %}">My Directory</a></li>
+        </ul>
+      </div>
+      <div class="collapse navbar-collapse" id="adsfasdf">
+        <ul class="nav navbar-nav navbar-right">
+          {% if email is not None %}
+          <li><a href="{% url 'logout' %}">Log Out</a></li>
+          {% else %}
+          <li><a href="{% url 'login' %}">Log In</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+  {% block content %}
+  
+  {% endblock %}
+  <footer class="container-fluid text-center">
+    <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+      <span class="glyphicon glyphicon-chevron-up"></span>
+    </a><br><br>
+    <p>Made In <a href="{% url 'base' %}" data-toggle="tooltip" title="Apoorv Tyagi">INDIA</a></p>
+  </footer>
+
+
+
+</body>
+
+</html>
